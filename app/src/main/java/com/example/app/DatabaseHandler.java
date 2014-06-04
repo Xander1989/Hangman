@@ -3,13 +3,25 @@ package com.example.app;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import static android.database.sqlite.SQLiteDatabase.openDatabase;
 
 /**
  * Created by Mark on 3-6-14.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
+
+    SQLiteDatabase db;
 
     public static final String
             KEY_ID = "_id" ,
@@ -20,24 +32,108 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATBASE_NAME = "HangmanDatabase", TABLE_SCORES = "highscores" , TABLE_DICTIONARY = "dictionary";
+    private static final String DATABASE_NAME = "HangmanDatabase.db", DATABASE_PATH = "/data/data/com.example.app/databases/" ,TABLE_SCORES = "highScores" , TABLE_DICTIONARY = "dictionary";
+
+    Context context;
 
     public DatabaseHandler(Context context) {
-        super(context, DATBASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
+    }
+
+
+
+    /**
+     * Creates a empty database on the system and rewrites it with your own database.
+     * */
+    public void createDB() throws IOException{
+
+        boolean dbExist = checkDB();
+
+        if(dbExist) {
+            //do nothing - database already exist
+        }
+        else {
+
+            //By calling this method and empty database will be created into the default system path
+            //of your application so we are gonna be able to overwrite that database with our database.
+            this.getReadableDatabase();
+
+            try {
+                copyDataBase();
+            } catch (IOException e) {
+                throw new Error("Error copying database");
+            }
+        }
+    }
+
+    /**
+     * Check if the database already exist to avoid re-copying the file each time you open the application.
+     */
+    private boolean checkDB(){
+
+        // try to open the database
+        try {
+
+            openDataBase();
+
+        } catch(SQLiteException e){
+
+            // database doesn't exist yet.
+            return false;
+        }
+
+        // database does exist
+        return true;
+    }
+
+
+    /**
+     * Copies your database from your local assets-folder to the just created empty database in the
+     * system folder, from where it can be accessed and handled.
+     * This is done by transfering bytestream.
+     * */
+    private void copyDataBase() throws IOException {
+
+        // Path to the just created empty db
+        String outFileName = DATABASE_PATH + DATABASE_NAME;
+
+        // Open the empty db as the output stream
+        OutputStream myOutput = new FileOutputStream(outFileName);
+
+        // Open your local db as the input stream
+        InputStream myInput = context.getAssets().open(DATABASE_NAME);
+
+        // Transfer bytes from the inputfile to the outputfile
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer))>0){
+            myOutput.write(buffer, 0, length);
+        }
+
+        // Close the streams
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE" + TABLE_SCORES + "(" + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + "TEXT" + KEY_WORD + "TEXT" + KEY_MISTAKES + "INTEGER" + KEY_LENGTH + "INTEGER");
-        db.execSQL("CREATE TABLE" + TABLE_DICTIONARY + "(" + KEY_ID + "INTEGER PRIMARY KEY," + KEY_WORD + "VARCHAR" + KEY_LENGTH + "INTEGER");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 
-        db.execSQL("DROP TABLE IF EXISTS" + TABLE_SCORES + TABLE_DICTIONARY);
+    }
 
-        onCreate(db);
+    public void openDataBase() throws SQLException {
+
+        // Open the database
+        String myPath = DATABASE_PATH + DATABASE_NAME;
+        db = openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+
     }
 
     public SQLiteDatabase insertscore(String name, String word, int mistakes, int length) {

@@ -13,16 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import java.io.IOException;
+
 public class MainActivity extends ActionBarActivity {
 
-    public DatabaseHandler db = new DatabaseHandler(this);
+    public DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db.getReadableDatabase();
+        db = new DatabaseHandler(this);
+        try {
+            db.createDB();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
