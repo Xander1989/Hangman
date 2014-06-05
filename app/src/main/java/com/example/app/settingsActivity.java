@@ -6,38 +6,39 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.content.Intent;
+import android.widget.TextView;
 
 /**
  * Created by Mark on 3-6-14.
  */
 public class settingsActivity extends ActionBarActivity {
 
+    EditText text1;
+    EditText text2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.fragment_settings);
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+        text1= (EditText) findViewById(R.id.turns);
+        text2= (EditText) findViewById(R.id.wordlength);
+
+
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
+    public void saveSettings(View v){
 
-        public PlaceholderFragment() {
-        }
+       Intent intent = new Intent(this, gameActivity.class);
+        intent.putExtra("turns", Integer.parseInt(text1.getText().toString()));
+        intent.putExtra("length", Integer.parseInt(text2.getText().toString()));
+       startActivity(intent);
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-            return rootView;
-        }
     }
 
 

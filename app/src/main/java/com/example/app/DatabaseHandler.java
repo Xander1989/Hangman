@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
 
 import static android.database.sqlite.SQLiteDatabase.openDatabase;
 
@@ -75,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // try to open the database
         try {
 
-            openDataBase();
+            openDB();
 
         } catch(SQLiteException e){
 
@@ -128,12 +129,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void openDataBase() throws SQLException {
+    public void openDB() throws SQLException {
 
         // Open the database
         String myPath = DATABASE_PATH + DATABASE_NAME;
         db = openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
+    }
+
+    public String pickWord(int length) {
+
+        openDB();
+        Cursor cursor = db.query(TABLE_DICTIONARY, new String[] { KEY_ID, KEY_WORD }, KEY_LENGTH+"=?", new String[] { String.valueOf(length) }, null, null, null);
+
+        int count = cursor.getCount();
+
+        int index = new Random().nextInt(count);
+        cursor.move(index + 1);
+
+        String Word = cursor.getString(cursor.getColumnIndex(KEY_WORD));
+
+        return Word;
     }
 
     public SQLiteDatabase insertscore(String name, String word, int mistakes, int length) {

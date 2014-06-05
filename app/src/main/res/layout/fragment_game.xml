@@ -231,5 +231,23 @@
         android:layout_above="@+id/button_q"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="27dp"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toLeftOf="@+id/button_h" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="27dp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/button_q"
+        android:layout_alignStart="@+id/button_q"
+        android:layout_marginTop="35dp" />
+
 
 </RelativeLayout>
