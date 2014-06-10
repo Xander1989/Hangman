@@ -1,15 +1,18 @@
 package com.example.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.content.Intent;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
@@ -17,8 +20,7 @@ import android.widget.TextView;
  */
 public class settingsActivity extends ActionBarActivity {
 
-    EditText text1;
-    EditText text2;
+    public final String PREFS_NAME = "hangmanFile";
 
 
     @Override
@@ -26,20 +28,42 @@ public class settingsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_settings);
 
-        text1= (EditText) findViewById(R.id.turns);
-        text2= (EditText) findViewById(R.id.wordlength);
+        final SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        final SharedPreferences.Editor editor = settings.edit();
 
+        Button btn = (Button)findViewById(R.id.button_settings);
+        final SeekBar turns = (SeekBar)findViewById(R.id.seekBar_turns);
+        final SeekBar word_length = (SeekBar)findViewById(R.id.seekBar_words);
+        final TextView text_turns = (TextView)findViewById(R.id.textView);
+        final TextView text_length = (TextView)findViewById(R.id.textView2);
+
+        int progress1 = settings.getInt("turns", 10);
+        text_turns.setText("Number of Turns: " + progress1);
+        turns.setProgress(progress1);
+
+        int progress2 = settings.getInt("word_length", 5);
+        text_length.setText("Length of word: " + progress2);
+        word_length.setProgress(progress2);
+
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putInt("turns", turns.getProgress());
+                editor.putInt("word_length", word_length.getProgress());
+
+                editor.commit();
+
+                Intent intent = new Intent(getApplicationContext(), gameActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
-    public void saveSettings(View v){
 
-       Intent intent = new Intent(this, gameActivity.class);
-        intent.putExtra("turns", Integer.parseInt(text1.getText().toString()));
-        intent.putExtra("length", Integer.parseInt(text2.getText().toString()));
-       startActivity(intent);
-
-    }
 
 
 }

@@ -12,8 +12,9 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="q"
+        android:text="@string/q"
         android:id="@+id/button_q"
+        android:onClick="checkLetter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -23,80 +24,90 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="w"
+        android:text="@string/w"
         android:id="@+id/button_w"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_q"
         android:layout_toRightOf="@+id/button_q" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="e"
+        android:text="@string/e"
         android:id="@+id/button_e"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_w"
         android:layout_toRightOf="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="r"
+        android:text="@string/r"
         android:id="@+id/button_r"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_e"
         android:layout_toRightOf="@+id/button_e" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="t"
+        android:text="@string/t"
         android:id="@+id/button_t"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_r"
         android:layout_toRightOf="@+id/button_r" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="y"
+        android:text="@string/y"
         android:id="@+id/button_y"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_t"
         android:layout_toRightOf="@+id/button_t" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="u"
+        android:text="@string/u"
         android:id="@+id/button_u"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_y"
         android:layout_toRightOf="@+id/button_y" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="i"
+        android:text="@string/i"
         android:id="@+id/button_i"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_u"
         android:layout_toRightOf="@+id/button_u" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="o"
+        android:text="@string/o"
         android:id="@+id/button_o"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_i"
         android:layout_toRightOf="@+id/button_i" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="p"
+        android:text="@string/p"
         android:id="@+id/button_p"
+        android:onClick="checkLetter"
         android:layout_alignTop="@+id/button_o"
         android:layout_toRightOf="@+id/button_o" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="a"
+        android:text="@string/a"
         android:id="@+id/button_a"
+        android:onClick="checkLetter"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/button_w"
         android:layout_alignLeft="@+id/button_q"
@@ -105,72 +116,81 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="s"
+        android:text="@string/s"
         android:id="@+id/button_s"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_a"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="d"
+        android:text="@string/d"
         android:id="@+id/button_d"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_s"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="f"
+        android:text="@string/f"
         android:id="@+id/button_f"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_d"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="g"
+        android:text="@string/g"
         android:id="@+id/button_g"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_f"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="h"
+        android:text="@string/h"
         android:id="@+id/button_h"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_g"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="j"
+        android:text="@string/j"
         android:id="@+id/button_j"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_h"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="k"
+        android:text="@string/k"
         android:id="@+id/button_k"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_j"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="l"
+        android:text="@string/l"
         android:id="@+id/button_l"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_k"
         android:layout_below="@+id/button_w" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="z"
+        android:text="@string/z"
         android:id="@+id/button_z"
+        android:onClick="checkLetter"
         android:layout_below="@+id/button_a"
         android:layout_alignLeft="@+id/button_q"
         android:layout_alignStart="@+id/button_q" />
@@ -178,48 +198,54 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="x"
+        android:text="@string/x"
         android:id="@+id/button_x"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_z"
         android:layout_below="@+id/button_a" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="c"
+        android:text="@string/c"
         android:id="@+id/button_c"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_x"
         android:layout_below="@+id/button_a" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="v"
+        android:text="@string/v"
         android:id="@+id/button_v"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_c"
         android:layout_below="@+id/button_a" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="b"
+        android:text="@string/b"
         android:id="@+id/button_b"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_v"
         android:layout_below="@+id/button_a" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="n"
+        android:text="@string/n"
         android:id="@+id/button_n"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_b"
         android:layout_below="@+id/button_a" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:text="m"
+        android:text="@string/m"
         android:id="@+id/button_m"
+        android:onClick="checkLetter"
         android:layout_toRightOf="@+id/button_n"
         android:layout_below="@+id/button_a" />
 

@@ -13,42 +13,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:text="Number of Turns"
+        android:text=""
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp" />
-
-    <EditText
-        android:id="@+id/turns"
-        android:text="10"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
-        android:inputType="numberDecimal"
-        android:numeric="decimal"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
-        android:text="length of word"
+        android:text=""
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_marginTop="94dp"
         android:layout_below="@+id/textView" />
-
-    <EditText
-        android:id="@+id/wordlength"
-        android:text="5"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
-        android:inputType="numberDecimal"
-        android:numeric="decimal"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/turns"
-        android:layout_alignStart="@+id/turns" />
-
 
 
     <Button
@@ -62,6 +40,22 @@
         android:layout_marginTop="51dp"
         android:layout_below="@+id/textView2" />
 
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar_turns"
+        android:max="26"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar_words"
+        android:max="23"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/seekBar_turns"
+        android:layout_alignStart="@+id/seekBar_turns" />
 
 
 </RelativeLayout>
