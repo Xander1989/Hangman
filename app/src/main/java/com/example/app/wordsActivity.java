@@ -7,16 +7,17 @@ import android.content.SharedPreferences;
  */
 public class wordsActivity {
 
+
     String word;
     String shownWord;
+    DatabaseHandler db;
     int length;
 
-    SharedPreferences settings;
-    DatabaseHandler db;
-
     public static final String PREFS_NAME = "hangmanFile";
+    SharedPreferences settings;
 
     public wordsActivity(){
+
 
         length = settings.getInt("word_length", 5);
         word = playedWord(length);
@@ -50,5 +51,13 @@ public class wordsActivity {
         }
 
         return sb.toString();
+    }
+
+    public String getPlayedWord(){
+        return word;
+    }
+
+    public String getshownWord(){
+        return shownWord;
     }
 }

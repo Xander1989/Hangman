@@ -25,6 +25,10 @@
             android:name="com.example.app.settingsActivity">
         </activity>
 
+        <activity
+            android:name="com.example.app.highscoreActivity">
+        </activity>
+
 
     </application>
 

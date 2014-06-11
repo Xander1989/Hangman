@@ -9,6 +9,7 @@ import android.widget.Button;
  */
 public class gamesupportActivity {
 
+
     public static final String PREFS_NAME = "hangmanFile";
 
         String word;
@@ -27,7 +28,7 @@ public class gamesupportActivity {
         db = b;
 
         length = settings.getInt("word_length", 5);
-        turns = settings.getInt("turnsleft", 10);
+        turns = settings.getInt("MaximumTurns", 10);
         word = playedWord(length);
         shownWord = shownWord();
 
@@ -67,47 +68,38 @@ public class gamesupportActivity {
 
         char guessedLetter = button.getText().toString().charAt(0);
 
-        // create an editor for the SharedPreferences object
+
         SharedPreferences.Editor editor = settings.edit();
 
-        // prevent chosen button to be clicked again
         button.setEnabled(false);
 
-        // if the guessed letter is correct
         if (checkLetter(guessedLetter)) {
 
-            // set button color to green
             button.setBackgroundColor(Color.GREEN);
 
             shownWord = shownWord(guessedLetter);
 
-            // save guessed letter as correct guessed letter
             correctLetters += guessedLetter;
             editor.putString("correctLetter", correctLetters);
             editor.putString("showWord", shownWord);
 
         }
 
-        // if the guessed letter is wrong
+
         else {
 
-            // set button color to red
             button.setBackgroundColor(Color.RED);
 
-            // save guessed letter as wrong guessed letter
             wrongLetters += guessedLetter;
             editor.putString("wrongLetter", wrongLetters);
 
-            // Show new number of turns left
             turns--;
         }
 
 
 
-        // save new value of turns left in prefs
-        editor.putInt("turns", turns);
 
-        // commit the preferences
+        editor.putInt("turns", turns);
         editor.commit();
 
     }
@@ -125,13 +117,13 @@ public class gamesupportActivity {
     public String shownWord(char guessedLetter) {
 
         StringBuilder sb = new StringBuilder();
+
         sb.append(shownWord);
 
-        // Replace underscore with correct guessed letter.
-        int index = word.indexOf(guessedLetter);
-        while (index >= 0) {
-            sb.setCharAt(index, guessedLetter);
-            index = word.indexOf(guessedLetter, index + 1);
+        int wordcount = word.indexOf(guessedLetter);
+        while (wordcount >= 0) {
+            sb.setCharAt(wordcount, guessedLetter);
+            wordcount = word.indexOf(guessedLetter, wordcount + 1);
         }
 
         return sb.toString();
@@ -155,6 +147,14 @@ public class gamesupportActivity {
 
     public String getWrongLetters() {
         return wrongLetters;
+    }
+
+    public void insertScore(String name) {
+
+        int mistakes = wrongLetters.length();
+
+        // save the new high score in the database
+        db.insertscore(name, word, mistakes, length);
     }
 
 }

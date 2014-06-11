@@ -129,6 +129,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    @Override
+    public synchronized void close() {
+
+        if(db != null)
+            db.close();
+
+        super.close();
+
+    }
+
     public void openDB() throws SQLException {
 
         // Open the database
@@ -149,7 +159,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String Word = cursor.getString(cursor.getColumnIndex(KEY_WORD));
 
+        close();
+
         return Word;
+
     }
 
     public SQLiteDatabase insertscore(String name, String word, int mistakes, int length) {
@@ -176,6 +189,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public boolean viewScore(int mistakes, int length) {
+
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = getScores(length);
@@ -186,27 +200,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
             cursor.moveToLast();
 
-            // find number of mistakes of last score in the high score table
+
             int foundMistakes = cursor.getInt(cursor.getColumnIndex(KEY_MISTAKES));
             int foundID = cursor.getInt(cursor.getColumnIndex(KEY_ID));
 
-            // if last played game had less mistakes or high score table is not full
             if (mistakes <= foundMistakes || count < 5 ) {
 
-                // if table is full, delete lowest score in the high score table
                 if (count == 5) {
                     db.delete(TABLE_SCORES, KEY_ID + "=" + foundID, null);
                 }
-
                 return true;
             }
         }
 
-        // if the high score table of certain length is empty
         else {
             return true;
         }
 
         return false;
+
     }
+
 }

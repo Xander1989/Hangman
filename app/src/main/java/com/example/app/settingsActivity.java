@@ -37,7 +37,7 @@ public class settingsActivity extends ActionBarActivity {
         final TextView text_turns = (TextView)findViewById(R.id.textView);
         final TextView text_length = (TextView)findViewById(R.id.textView2);
 
-        int progress1 = settings.getInt("turns", 10);
+        int progress1 = settings.getInt("MaximumTurns", 10);
         text_turns.setText("Number of Turns: " + progress1);
         turns.setProgress(progress1);
 
@@ -50,7 +50,7 @@ public class settingsActivity extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editor.putInt("turns", turns.getProgress());
+                editor.putInt("MaximumTurns", turns.getProgress());
                 editor.putInt("word_length", word_length.getProgress());
 
                 editor.commit();
