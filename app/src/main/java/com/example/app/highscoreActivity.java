@@ -28,5 +28,9 @@ public class highscoreActivity extends ActionBarActivity {
         final TextView textView2 = (TextView) findViewById(R.id.CorrectWord);
         textView2.setText("The correct word: " + word);
 
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("name", settings.getString("name", "unknown"));
+        editor.commit();
+
     }
 }

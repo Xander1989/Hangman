@@ -61,7 +61,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             this.getReadableDatabase();
 
             try {
-                copyDataBase();
+                copyDB();
             } catch (IOException e) {
                 throw new Error("Error copying database");
             }
@@ -94,7 +94,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * system folder, from where it can be accessed and handled.
      * This is done by transfering bytestream.
      * */
-    private void copyDataBase() throws IOException {
+    private void copyDB() throws IOException {
 
         // Path to the just created empty db
         String outFileName = DATABASE_PATH + DATABASE_NAME;

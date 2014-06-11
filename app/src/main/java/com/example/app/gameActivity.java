@@ -24,8 +24,6 @@ public class gameActivity extends ActionBarActivity {
       gamesupportActivity newgame;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +37,7 @@ public class gameActivity extends ActionBarActivity {
 
         String word = newgame.getShownWord();
         TextView textView1 = (TextView) findViewById(R.id.textView);
-        textView1.setText(word.replaceAll(".(?!$)", "$0 "));
+        textView1.setText(word);
 
         int numberOfTurns = newgame.getTurns();
         TextView textView2 = (TextView) findViewById(R.id.textView2);
