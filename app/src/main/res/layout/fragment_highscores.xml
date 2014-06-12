@@ -26,5 +26,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_below="@+id/CorrectWord"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="131dp" />
+
 
 </RelativeLayout>
