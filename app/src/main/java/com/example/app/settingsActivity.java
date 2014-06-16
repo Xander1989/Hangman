@@ -41,10 +41,54 @@ public class settingsActivity extends ActionBarActivity {
         text_turns.setText("Number of Turns: " + progress1);
         turns.setProgress(progress1);
 
+        turns.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+
+                text_turns.setText("Number of Turns: " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+
+
+
         int progress2 = settings.getInt("word_length", 5);
         text_length.setText("Length of word: " + progress2);
         word_length.setProgress(progress2);
 
+        word_length.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+
+                text_length.setText("Length of word: " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+        });
 
 
         btn.setOnClickListener(new View.OnClickListener() {
