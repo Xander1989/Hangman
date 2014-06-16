@@ -30,10 +30,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_below="@+id/CorrectWord"
+        android:layout_below="@+id/Name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="131dp" />
+        />
+
+    <TextView
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:textStyle="bold"
+        android:id="@+id/ID"
+        android:layout_alignTop="@+id/Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="31dp" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textStyle="bold"
+        android:id="@+id/Name"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ID"
+        android:layout_marginLeft="28dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Word"
+        android:textStyle="bold"
+        android:id="@+id/Word"
+        android:layout_marginLeft="36dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toRightOf="@+id/Name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mistakes"
+        android:textStyle="bold"
+        android:id="@+id/Mistakes"
+        android:layout_alignTop="@+id/Word"
+        android:layout_toRightOf="@+id/Word"
+        android:layout_marginLeft="36dp" />
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.widget.Button;
@@ -7,7 +8,7 @@ import android.widget.Button;
 /**
  * Created by Mark on 10-6-14.
  */
-public class gamesupportActivity {
+public class gameSupport {
 
 
     public static final String PREFS_NAME = "hangmanFile";
@@ -15,21 +16,25 @@ public class gamesupportActivity {
         String word;
         int length;
         int turns;
+        int endgame = 0;
         String shownWord;
         String correctLetters= "";
         String wrongLetters= "";
 
         SharedPreferences settings;
         DatabaseHandler db;
+        words WORD;
 
-    public gamesupportActivity(SharedPreferences a, DatabaseHandler b){
+    public gameSupport(SharedPreferences a, DatabaseHandler b){
 
         settings = a;
         db = b;
 
+        WORD = new words(settings, db);
+
         length = settings.getInt("word_length", 5);
         turns = settings.getInt("MaximumTurns", 10);
-        word = playedWord(length);
+        word = WORD.playedWord(length);
         shownWord = shownWord();
 
         SharedPreferences.Editor editor = settings.edit();
@@ -41,14 +46,6 @@ public class gamesupportActivity {
         editor.putString("wrongLetter", "");
         editor.commit();
 
-    }
-
-    public String playedWord(int length) {
-
-        // pick a random word with certain length from the database
-        String randomWord =  db.pickWord(length).toLowerCase();
-
-        return randomWord;
     }
 
     public String shownWord() {
@@ -129,6 +126,19 @@ public class gamesupportActivity {
         return sb.toString();
     }
 
+    public void endGame(){
+
+        if(turns <= 0){
+            endgame = 1;
+        }
+
+        else if(!shownWord.contains("_"))  {
+            endgame = 2;
+
+        }
+
+    }
+
     public String getWord() {
         return word;
     }
@@ -155,6 +165,10 @@ public class gamesupportActivity {
 
         // save the new high score in the database
         db.insertscore(name, word, mistakes, length);
+    }
+
+    public int getEndGame(){
+        return endgame;
     }
 
 }

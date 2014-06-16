@@ -5,11 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +18,7 @@ public class gameActivity extends ActionBarActivity {
 
     public static final String PREFS_NAME = "hangmanFile";
 
-      gamesupportActivity newgame;
+      gameSupport newgame;
 
 
     @Override
@@ -33,7 +30,7 @@ public class gameActivity extends ActionBarActivity {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        newgame = new gamesupportActivity(settings, db);
+        newgame = new gameSupport(settings, db);
 
         String word = newgame.getShownWord();
         TextView textView1 = (TextView) findViewById(R.id.textView);
@@ -46,7 +43,7 @@ public class gameActivity extends ActionBarActivity {
 
     }
 
-    public void GameTurns(View view) {
+    public void gameTurns(View view) {
 
 
         Button button = (Button) findViewById(view.getId());
@@ -61,7 +58,10 @@ public class gameActivity extends ActionBarActivity {
         final TextView textView2 = (TextView) findViewById(R.id.textView2);
         textView2.setText("Turns: " + String.valueOf(numberOfTurns));
 
-        if(numberOfTurns <= 0){
+        newgame.endGame();
+        int endgame = newgame.getEndGame();
+
+        if(endgame == 1){
             Intent intentLoose = new Intent(getApplicationContext(), highscoreActivity.class);
             intentLoose.putExtra("game", "Try harder, you lost!" );
             startActivity(intentLoose);
@@ -69,7 +69,7 @@ public class gameActivity extends ActionBarActivity {
 
         }
 
-        else if(!shownWord.contains("_"))  {
+        else if(endgame == 2)  {
             Intent intentWin = new Intent(getApplicationContext(), highscoreActivity.class);
 
             DatabaseHandler db = new DatabaseHandler(this);

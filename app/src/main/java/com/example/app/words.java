@@ -5,28 +5,28 @@ import android.content.SharedPreferences;
 /**
  * Created by Mark on 10-6-14.
  */
-public class wordsActivity {
+public class words {
 
 
     String word;
-    String shownWord;
     DatabaseHandler db;
     int length;
 
     public static final String PREFS_NAME = "hangmanFile";
     SharedPreferences settings;
 
-    public wordsActivity(){
+    public words(SharedPreferences a, DatabaseHandler b){
 
+        this.settings = a;
+        this.db = b;
 
         length = settings.getInt("word_length", 5);
         word = playedWord(length);
-        shownWord = shownWord();
+
 
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putString("word", word);
-        editor.putString("shownWord", shownWord);
 
         editor.commit();
 
@@ -41,23 +41,4 @@ public class wordsActivity {
         return randomWord;
     }
 
-    public String shownWord() {
-
-        StringBuilder sb = new StringBuilder();
-
-        //  Set letters in the word to underscores.
-        for (int i = 0, l = word.length(); i < l; i++) {
-            sb.append('_');
-        }
-
-        return sb.toString();
-    }
-
-    public String getPlayedWord(){
-        return word;
-    }
-
-    public String getshownWord(){
-        return shownWord;
-    }
 }
