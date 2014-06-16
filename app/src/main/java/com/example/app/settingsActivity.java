@@ -48,7 +48,7 @@ public class settingsActivity extends ActionBarActivity {
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
 
-                text_turns.setText("Number of Turns: " + progress);
+                text_turns.setText("Number of Turns: " + (progress + 1));
             }
 
             @Override
@@ -76,7 +76,7 @@ public class settingsActivity extends ActionBarActivity {
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
 
-                text_length.setText("Length of word: " + progress);
+                text_length.setText("Length of word: " + (progress + 1));
             }
 
             @Override
@@ -94,8 +94,8 @@ public class settingsActivity extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editor.putInt("MaximumTurns", turns.getProgress());
-                editor.putInt("word_length", word_length.getProgress());
+                editor.putInt("MaximumTurns", turns.getProgress() + 1);
+                editor.putInt("word_length", word_length.getProgress() + 1);
 
                 editor.commit();
 

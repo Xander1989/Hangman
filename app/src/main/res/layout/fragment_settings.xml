@@ -44,7 +44,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar_turns"
-        android:max="26"
+        android:max="25"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
 
